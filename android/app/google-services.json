@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "956683414095",
+    "project_id": "mosque--guide",
+    "storage_bucket": "mosque--guide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956683414095:android:77a24d0f5cba32ecce183a",
+        "android_client_info": {
+          "package_name": "com.example.mosque_guide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956683414095-erltfrttf8rihqv3dkpk64rsp192eg7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHGZeJhZ8S9sQMlMSvUADomDYH3Lzb_iY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956683414095-erltfrttf8rihqv3dkpk64rsp192eg7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
