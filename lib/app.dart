@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mosque_guide/config/routes/app_routes.dart';
 import 'package:mosque_guide/features/mosque_guide/presentation/cubit/mosque_cubit.dart';
+import 'package:mosque_guide/features/mosque_guide/presentation/screens/home_screen.dart';
+import 'package:mosque_guide/features/mosque_guide/presentation/screens/mosques_map_screen.dart';
+import 'package:mosque_guide/features/mosque_guide/presentation/screens/menu_screen.dart';
 
 import 'config/locale/app_localizations_setup.dart';
 import 'config/themes/app_theme.dart';
@@ -27,6 +30,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
         locale: Locale('ar'),
         onGenerateRoute: appRoutes.onGenerateRoute,
+        // home: HomeScreen(),
       ),
     );
   }

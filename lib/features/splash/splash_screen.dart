@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   late Timer _timer;
 
   void _goNext() =>
-      Navigator.of(context).pushReplacementNamed(AppRoutes.mosqueMapScreen);
+      Navigator.of(context).pushReplacementNamed(AppRoutes.onBoardingScreen);
 
   _startDelay() {
     _timer = Timer(Duration(seconds: 2), () => _goNext());

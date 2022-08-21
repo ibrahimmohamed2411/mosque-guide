@@ -45,6 +45,9 @@ dependencies:
   google_maps_flutter: ^2.1.10
   location: ^4.4.0
   flutter_typeahead: ^4.0.0
+  flutter_zoom_drawer: ^3.0.3
+
+
 
 
 dev_dependencies:
