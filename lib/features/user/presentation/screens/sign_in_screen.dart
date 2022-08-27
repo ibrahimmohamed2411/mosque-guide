@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mosque_guide/core/utils/app_colors.dart';
+import 'package:mosque_guide/core/utils/constants.dart';
 import 'package:mosque_guide/features/user/presentation/bloc/user_bloc.dart';
 import 'package:mosque_guide/features/user/presentation/widgets/custom_elevated_button.dart';
 import 'package:mosque_guide/features/user/presentation/widgets/custom_icon_elevated_button.dart';
-
+import 'package:overlay_loading_progress/overlay_loading_progress.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -23,11 +24,13 @@ class SignInScreen extends StatelessWidget {
               BlocListener<UserBloc, UserState>(
                 listener: (context, state) {
                   if (state is SignInSuccessState) {
-                    print('Sign in success state');
+                    OverlayLoadingProgress.stop(context);
                   } else if (state is SignInErrorState) {
-                    print('Sign in error state');
+                    OverlayLoadingProgress.stop(context);
+                    Constant.showErrorMessage(context: context);
                   } else if (state is SignInLoadingState) {
-                    print('Sign in loading state');
+                    OverlayLoadingProgress.start(context,
+                        barrierDismissible: false);
                   }
                 },
                 child: SizedBox(),
