@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:mosque_guide/config/routes/app_routes.dart';
+import 'package:mosque_guide/core/utils/media_query_values.dart';
+import 'package:mosque_guide/inject_container.dart';
 
+import '../../../user/data/datasources/user_local_data_source.dart';
 import '../widgets/custom_list_tile.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -8,6 +12,7 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentUser = sl<UserLocalDataSource>().getCurrentUser();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 100),
       child: ListView(
@@ -15,35 +20,50 @@ class MenuScreen extends StatelessWidget {
           Container(
             child: Row(
               children: [
-                Image.asset(
-                  'assets/images/visitor.png',
-                  fit: BoxFit.cover,
-                  height: 60,
-                  width: 60,
+                Expanded(
+                  flex: 1,
+                  child: currentUser!.isAnonymous
+                      ? Image.asset(
+                          'assets/images/visitor.png',
+                          fit: BoxFit.cover,
+                        )
+                      : ClipRRect(
+                          child: Image.network(
+                            currentUser.photoURL!,
+                          ),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                Container(
-                  padding: EdgeInsets.all(3),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'مرحبا بك',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'مرحبا بك',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'زائر',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
+                        FittedBox(
+                          child: Text(
+                            currentUser.isAnonymous
+                                ? 'زائر'
+                                : currentUser.displayName!,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -120,6 +140,9 @@ class MenuScreen extends StatelessWidget {
               Icons.contact_phone,
               color: Colors.white,
             ),
+            onTap: () {
+              Navigator.of(context).pushNamed(AppRoutes.contactUsScreen);
+            },
           ),
           CustomListTile(
             title: Text(
@@ -133,6 +156,9 @@ class MenuScreen extends StatelessWidget {
               Icons.info,
               color: Colors.white,
             ),
+            onTap: () {
+              Navigator.of(context).pushNamed(AppRoutes.aboutAppScreen);
+            },
           ),
           CustomListTile(
             title: Text(
@@ -142,6 +168,7 @@ class MenuScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+            onTap: () => sl<UserLocalDataSource>().signOut(),
           ),
         ],
       ),

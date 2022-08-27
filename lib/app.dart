@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mosque_guide/config/routes/app_routes.dart';
 import 'package:mosque_guide/features/mosque_guide/presentation/cubit/mosque_cubit.dart';
-import 'package:mosque_guide/features/mosque_guide/presentation/screens/home_screen.dart';
-import 'package:mosque_guide/features/mosque_guide/presentation/screens/mosques_map_screen.dart';
-import 'package:mosque_guide/features/mosque_guide/presentation/screens/menu_screen.dart';
 
 import 'config/locale/app_localizations_setup.dart';
 import 'config/themes/app_theme.dart';
+import 'features/contact us/presentation/screens/contact_us_screen.dart';
+import 'features/user/presentation/bloc/user_bloc.dart';
 import 'inject_container.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,10 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<MosqueCubit>()
-        ..getCurrentLocation()
-        ..getMosques(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<MosqueCubit>()
+            ..getCurrentLocation()
+            ..getMosques(),
+        ),
+        BlocProvider(
+          create: (context) => sl<UserBloc>(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Mosque Guide',
         debugShowCheckedModeBanner: false,
@@ -30,7 +36,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
         locale: Locale('ar'),
         onGenerateRoute: appRoutes.onGenerateRoute,
-        // home: HomeScreen(),
+        
       ),
     );
   }

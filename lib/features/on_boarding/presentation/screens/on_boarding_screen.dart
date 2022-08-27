@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mosque_guide/config/routes/app_routes.dart';
 import 'package:mosque_guide/core/utils/app_colors.dart';
 import 'package:mosque_guide/features/mosque_guide/presentation/widgets/custom_circle_button.dart';
+import 'package:mosque_guide/features/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 
 import '../widgets/on_boarding_widget.dart';
 
@@ -73,6 +75,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           curve: Curves.easeInOutCubicEmphasized,
                         );
                       } else {
+                        BlocProvider.of<OnBoardingCubit>(context)
+                            .cacheOnBoardingState();
                         Navigator.of(context).pushReplacementNamed(
                           AppRoutes.homeScreen,
                         );

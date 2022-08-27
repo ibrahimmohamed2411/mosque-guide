@@ -1,0 +1,12 @@
+<?xml version= "1.0" encoding="utf-8"?>
+<resources>
+   
+<string name="facebook_app_id">770270524210505</string>
+<string name="fb_login_protocol_scheme">fb770270524210505</string>
+<string name="facebook_client_token">2ff75fcb2852e4f027fa5a25d279fb87</string>
+<string name="app_name">mosque_guide</string>
+
+
+
+
+</resources>

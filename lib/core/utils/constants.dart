@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -58,5 +59,25 @@ class Constant {
         ],
       ),
     );
+  }
+
+  static void showErrorMessage({required BuildContext context}) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.ERROR,
+      animType: AnimType.BOTTOMSLIDE,
+      desc: 'حدث خطأ.يرجي اعادة المحاولة لاحقا',
+      btnCancelOnPress: () {},
+    )..show();
+  }
+
+  static void showSuccessMessage({required BuildContext context}) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.SUCCES,
+      animType: AnimType.BOTTOMSLIDE,
+      desc: 'تم الارسال بنجاح',
+      btnOkOnPress: () {},
+    )..show();
   }
 }

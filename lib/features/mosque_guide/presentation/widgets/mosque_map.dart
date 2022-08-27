@@ -28,6 +28,7 @@ class _MosqueMapState extends State<MosqueMap> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MosqueCubit, MosqueState>(
+      listenWhen: (previous, current) => previous!=current,
       listener: (context, state) {
         if (state is MosquesLoadedState) {
           mosques = state.mosques;
@@ -85,4 +86,5 @@ class _MosqueMapState extends State<MosqueMap> {
     controller.setMapStyle(style);
     _controller.complete(controller);
   }
+  
 }
